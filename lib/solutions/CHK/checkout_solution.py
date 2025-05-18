@@ -155,9 +155,10 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-print(client.checkout("B"))
+print(client.checkout("B") == 30)
 # s = "ADZRADF"
 
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
+
