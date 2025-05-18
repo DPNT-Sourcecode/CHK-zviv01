@@ -131,6 +131,7 @@ class CheckoutSolution:
                 self.total += div * offer['discounted_price']
             self.basket = self.basket.replace(offer['item'], '', div * offer['required'])
             print("remaining", self.basket)
+            print("total", self.total)
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
@@ -167,6 +168,7 @@ for test in tests:
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
+
 
 
 
