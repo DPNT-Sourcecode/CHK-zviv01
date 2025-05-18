@@ -155,8 +155,7 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-# offers = client.remove_unrelated_offers('A')
-print(client.checkout('QQRRR'))
+print(client.checkout('B'))
 # s = "ADZRADF"
 
 # # Sorting the string
@@ -182,6 +181,3 @@ print(client.checkout('QQRRR'))
         # if e_count > 1:
         #     div = e_count // 2
         #     skus = skus.replace('B', '', div)
-
-
-
