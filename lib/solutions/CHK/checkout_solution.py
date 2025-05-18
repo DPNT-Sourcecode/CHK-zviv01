@@ -107,8 +107,15 @@ class CheckoutSolution:
         },
     ]
 
-    def offers_sorted_by_required(self) -> list[dict]:
-        return sorted(self.offers, key=lambda x: x['required'], reverse=True)
+    def offers_sorted_by_required(self, input_offers: list[dict]) -> list[dict]:
+        return sorted(input_offers, key=lambda x: x['required'], reverse=True)
+    
+    def remove_unrelated_offers(self, skus) -> list[dict]:
+        offers = []
+        for offer in self.offers:
+            if offer['item'] in skus:
+                offers.append(offer)
+        return offers
 
 
     def apply_discount(self, skus, sku) -> int:
@@ -147,3 +154,4 @@ class CheckoutSolution:
 
 client = CheckoutSolution()
 print(client.offers_sorted_by_required())
+
