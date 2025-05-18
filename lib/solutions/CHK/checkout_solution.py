@@ -115,7 +115,7 @@ class CheckoutSolution:
         count: int
 
     def remove_unrelated_offers(self, skus) -> list[dict]:
-        return [offer for offer in self.offers if offer['item'] in skus]
+        return [offer for offer in OFFERS if offer['item'] in skus]
 
     def offers_sorted_by_required(self, input_offers: list[dict]) -> list[dict]:
         return sorted(input_offers, key=lambda x: x['required'], reverse=True)
@@ -126,7 +126,7 @@ class CheckoutSolution:
         if div > 0:
             if 'free_item' in offer.keys():
                 self.basket = self.basket.replace(offer['free_item'], '', div)
-                self.total += div * self.prices[offer['item']]
+                self.total += div * PRICES[offer['item']]
             if 'discounted_price' in offer.keys():
                 self.total += div * offer['discounted_price']
             self.basket = self.basket.replace(offer['item'], '', div * offer['required'])
@@ -153,8 +153,8 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-offers = client.remove_unrelated_offers('A')
-# print(client.offers_sorted_by_required(offers))
+# offers = client.remove_unrelated_offers('A')
+print(client.checkout('QQRRR'))
 # s = "ADZRADF"
 
 # # Sorting the string
@@ -180,3 +180,4 @@ offers = client.remove_unrelated_offers('A')
         # if e_count > 1:
         #     div = e_count // 2
         #     skus = skus.replace('B', '', div)
+
