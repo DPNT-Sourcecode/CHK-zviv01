@@ -145,8 +145,5 @@ class CheckoutSolution:
                 return -1                
         return total
 
-# client = CheckoutSolution()
-# print(client.checkout("EEBFFFFFF"))
-
-
-
+client = CheckoutSolution()
+print(client.offers_sorted_by_required())
