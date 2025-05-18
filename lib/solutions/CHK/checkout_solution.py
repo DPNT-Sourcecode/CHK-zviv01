@@ -42,8 +42,10 @@ class CheckoutSolution:
             else:
                 return -1                
         return total
-    
-print(CheckoutSolution.checkout('AAA'))
+
+client = CheckoutSolution()
+print(client.checkout('AAA'))
+
 
 
 
