@@ -42,6 +42,9 @@ class CheckoutSolution:
             else:
                 return -1                
         return total
+    
+print(CheckoutSolution.checkout('AAA'))
+
 
 
 
