@@ -1,3 +1,5 @@
+from collections import Counter
+
 PRICES = {
     'A': 50,
     'B': 30,
@@ -112,7 +114,8 @@ class CheckoutSolution:
     total = 0
 
     def sort_basket(self) -> None:
-        self.basket = ''.join(sorted(self.basket, key=self.basket.count, reverse=True))
+        c = Counter(self.basket)
+        self.basket = ''.join(sorted(c.elements(), reverse=True))
         print("sorted basket", self.basket)
 
     def remove_unrelated_offers(self, skus) -> list[dict]:
@@ -167,8 +170,7 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-tests = ["AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV"]
+tests = ["AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
-
