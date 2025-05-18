@@ -120,18 +120,18 @@ class CheckoutSolution:
         return sorted(remaining_offers, key=lambda x: x['required'], reverse=True)   
     
     def apply_offer(self, offer: dict) -> None:
+        print("applying offer", offer)
         sku_count = self.basket.count(offer['item'])
         div = sku_count // offer['required']
         if div > 0:
-            print("applying offer", offer)
+            self.basket = self.basket.replace(offer['item'], '', offer['required'])
             if 'free_item' in offer.keys():
                 print("free item")
-                self.basket = self.basket.replace(offer['free_item'], '', 1)
                 self.total += offer['required'] * PRICES[offer['item']]
-            if 'discounted_price' in offer.keys():
+                self.basket = self.basket.replace(offer['free_item'], '', 1)
+            elif 'discounted_price' in offer.keys():
                 print("discounted price")
                 self.total += offer['discounted_price']
-            self.basket = self.basket.replace(offer['item'], '', offer['required'])
             print("remaining", self.basket)
             print("total", self.total)
 
@@ -168,3 +168,4 @@ tests = ["FFFF", "FFFFF", "FFFFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
