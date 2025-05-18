@@ -150,14 +150,15 @@ class CheckoutSolution:
         while len(self.basket) > 0:
             item = self.basket[0]
             if item in PRICES.keys():
-                for offer in sorted_offers:
-                    if offer['item'] == item:
-                        self.apply_offer(offer)
-                        # if len(self.basket) == 0:
-                        #     break
-                sku_count = self.basket.count(item)
-                self.total += sku_count * PRICES[item]
-                self.basket = self.basket.replace(item, '', sku_count)
+                if item in [offer['item'] for offer in sorted_offers]:
+                    for offer in sorted_offers:
+                        if offer['item'] == item:
+                            self.apply_offer(offer)
+                            break
+                else:
+                    sku_count = self.basket.count(item)
+                    self.total += sku_count * PRICES[item]
+                    self.basket = self.basket.replace(item, '', sku_count)
             else:
                 return -1                
         return self.total
