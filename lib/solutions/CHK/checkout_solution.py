@@ -111,9 +111,6 @@ class CheckoutSolution:
     basket = ''
     total: int = 0
 
-    class Item:
-        count: int
-
     def remove_unrelated_offers(self, skus) -> list[dict]:
         return [offer for offer in OFFERS if offer['item'] in skus]
 
@@ -155,10 +152,14 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-print(client.checkout("B") == 30)
+tests = ["A", "B", "C", "D", "E"]
+for test in tests:
+    print(f"Test: {test}")
+    print(client.checkout(test))
 # s = "ADZRADF"
 
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
+
 
