@@ -29,7 +29,7 @@ class CheckoutSolution:
         'Z': 50
     }
 
-    offers = {
+    discount = {
         'A': [
             {
                 'count': 5,
@@ -92,21 +92,25 @@ class CheckoutSolution:
         ]
     }
 
-    def apply_offers(self, skus, sku) -> int:
+    free = {
+
+    }
+
+    def apply_discount(self, skus, sku) -> int:
         total = 0
         rem_skus = skus.count(sku)
-        for offer in self.offers[sku]:
-            div = rem_skus // offer['count']
+        for discount in self.discount[sku]:
+            div = rem_skus // discount['count']
             if div > 0:
-                total += div * offer['price']
-                rem_skus = rem_skus % offer['count']
+                total += div * discount['price']
+                rem_skus = rem_skus % discount['count']
         return total + rem_skus * self.prices[sku]
                 
 
     def total_sku(self, skus, sku) -> int:
         count = skus.count(sku)
-        if sku in self.offers.keys():
-            return self.apply_offers(skus, sku)
+        if sku in self.discount.keys():
+            return self.apply_discount(skus, sku)
         return count * self.prices[sku]
 
     # skus = unicode string
@@ -128,5 +132,6 @@ class CheckoutSolution:
 
 # client = CheckoutSolution()
 # print(client.checkout("EEBFFFFFF"))
+
 
 
