@@ -49,4 +49,3 @@ class CheckoutSolution:
             else:
                 return -1                
         return total
-
