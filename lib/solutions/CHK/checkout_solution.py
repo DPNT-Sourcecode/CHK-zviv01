@@ -124,8 +124,8 @@ class CheckoutSolution:
             return True
         return False
     
-    def find_offers(self, item: str) -> list[dict]:
-        item_offers = [offer for offer in OFFERS if offer['item'] == item]
+    def find_applicable_offers(self, item: str) -> list[dict]:
+        item_offers = [offer for offer in OFFERS if offer['item'] == item and self.can_apply_offer(offer)]
         return sorted(item_offers, key=lambda x: x['required'], reverse=True)
     
     def apply_offer(self, offer: dict) -> None:
@@ -154,7 +154,7 @@ class CheckoutSolution:
         while len(self.basket) > 0:
             item = self.basket[0]
             if item in PRICES.keys():
-                item_offers = self.find_offers(item)
+                item_offers = self.find_applicable_offers(item)
                 if len(item_offers) > 0:
                     for offer in item_offers:
                         if offer['item'] == item and self.can_apply_offer(offer):
@@ -175,5 +175,6 @@ tests = ["FFFF", "FFFFF", "FFFFFF", "AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVV
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
 
