@@ -29,17 +29,18 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus):
-        if skus == "":
-            return 0
+        rem_skus = skus.strip('ABCD')
+        if len(rem_skus) > 0:
+            return -1
         total = 0
-        rem_skus = skus
-        while len(rem_skus) > 0:
-            if rem_skus[0] in self.prices.keys():
+        for item in skus:
+            if item in self.prices.keys():
                 total += self.total_sku(skus, rem_skus)
-                rem_skus.strip(rem_skus[0])
+                rem_skus.strip(item)
             else:
                 return -1                
         return total
+
 
 
 
