@@ -157,20 +157,14 @@ class CheckoutSolution:
                 return -1                
         return self.total
 
-client = CheckoutSolution()
+# client = CheckoutSolution()
 # tests = ["A", "B", "C", "D", "E"]
-tests = ["AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
-for test in tests:
-    print(f"Test: {test}")
-    print("actual", client.checkout(test))
+# tests = ["AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
+# for test in tests:
+#     print(f"Test: {test}")
+#     print("actual", client.checkout(test))
 # s = "ADZRADF"
 
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
-
-
-
-
-
-
