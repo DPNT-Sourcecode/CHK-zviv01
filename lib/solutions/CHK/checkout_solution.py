@@ -115,7 +115,7 @@ class CheckoutSolution:
 
     def sort_basket(self) -> None:
         c = Counter(self.basket)
-        self.basket = ''.join(sorted(c.elements(), reverse=True))
+        self.basket = ''.join(sorted(c.most_common(), reverse=True))
         print("sorted basket", self.basket)
 
     def remove_unrelated_offers(self, skus) -> list[dict]:
@@ -170,7 +170,7 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-tests = ["AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+tests = ["AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZGGWWBBJ"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
