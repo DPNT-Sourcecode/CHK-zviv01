@@ -5,17 +5,26 @@ class CheckoutSolution:
         'B': 30,
         'C': 20,
         'D': 15,
+        'E': 40,
     }
 
     offers = {
-        'A': {
-            'count': 3,
-            'price': 130
-        },
-        'B': {
-            'count': 2,
-            'price': 45
-        },
+        'A': [
+            {
+                'count': 3,
+                'price': 130
+            },
+            {
+                'count': 5,
+                'price': 200
+            },
+        ],
+        'B': [
+            {
+                'count': 2,
+                'price': 45
+            }
+        ],
     }
 
     def total_sku(self, skus, sku) -> int:
@@ -40,3 +49,4 @@ class CheckoutSolution:
             else:
                 return -1                
         return total
+
