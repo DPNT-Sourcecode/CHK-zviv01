@@ -154,8 +154,8 @@ class CheckoutSolution:
                 return -1                
         return self.total
 
-# client = CheckoutSolution()
-# print(client.checkout('B'))
+client = CheckoutSolution()
+print(client.checkout("B"))
 # s = "ADZRADF"
 
 # # Sorting the string
