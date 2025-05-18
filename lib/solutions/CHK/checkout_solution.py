@@ -139,7 +139,6 @@ class CheckoutSolution:
                 self.basket = self.basket.replace(offer['free_item'], '', 1)
             elif 'discounted_price' in offer.keys():
                 self.total += offer['discounted_price']
-            print("remaining", self.basket)
             print("total", self.total)
 
     # skus = unicode string
@@ -170,11 +169,8 @@ class CheckoutSolution:
                 return -1                
         return self.total
 
-client = CheckoutSolution()
-tests = ["FFFF", "FFFFF", "FFFFFF", "AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
-for test in tests:
-    print(f"Test: {test}")
-    print("RESULT = ", client.checkout(test))
-
-
-
+# client = CheckoutSolution()
+# tests = ["FFFF", "FFFFF", "FFFFFF", "AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
+# for test in tests:
+#     print(f"Test: {test}")
+#     print("RESULT = ", client.checkout(test))
