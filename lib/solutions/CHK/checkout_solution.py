@@ -46,99 +46,70 @@ class CheckoutSolution:
             'discounted_price': 45
         },
         {
-            'item': 'B',
-
-        }
-        }
+            'item': 'E',
+            'required': 2,
+            'free_item': 'B'
+        },
+        {
+            'item': 'F',
+            'required': 2,
+            'free_item': 'F'
+        },
+        {
+            'item': 'H',
+            'required': 5,
+            'discounted_price': 45
+        },
+        {
+            'item': 'H',
+            'required': 10,
+            'discounted_price': 80
+        },
+        {
+            'item': 'K',
+            'required': 2,
+            'discounted_price': 150
+        },
+        {
+            'item': 'N',
+            'required': 3,
+            'free_item': 'M'
+        },
+        {
+            'item': 'P',
+            'required': 5,
+            'discounted_price': 200
+        },
+        {
+            'item': 'Q',
+            'required': 3,
+            'discounted_price': 80
+        },
+        {
+            'item': 'R',
+            'required': 3,
+            'free_item': 'Q'
+        },
+        {
+            'item': 'U',
+            'required': 3,
+            'free_item': 'U'
+        },
+        {
+            'item': 'V',
+            'required': 2,
+            'discounted_price': 90
+        },
+        {
+            'item': 'V',
+            'required': 3,
+            'discounted_price': 130
+        },
     ]
-        'A': [
-            {
-                'count': 5,
-                'price': 200
-            },
-            {
-                'count': 3,
-                'price': 130
-            }
-        ],
-        'B': [
-            {
-                'count': 2,
-                'price': 45
-            }
-        ],
-        'E': [
-            {
-                'count': 2,
-                'sku': 'B'
-            }
-        ],
-        'F': [
-            {
-                'count': 3,
-                'price': 20
-            }
-        ],
-        'H': [
-            {
-                'count': 5,
-                'price': 45
-            },
-            {
-                'count': 10,
-                'price': 80
-            }
-        ],
-        'K': [
-            {
-                'count': 2,
-                'price': 150
-            }
-        ],
-        'N': [
-            {
-                'count': 3,
-                'sku': 'M'
-            }
-        ],
-        'P': [
-            {
-                'count': 5,
-                'price': 200
-            }
-        ],
-        'Q': [
-            {
-                'count': 3,
-                'price': 80
-            }
-        ],
-        'R': [
-            {
-                'count': 3,
-                'sku': 'Q'
-            }
-        ],
-        'U': [
-            {
-                'count': 4,
-                'price': 120
-            }
-        ],
-        'V': [
-            {
-                'count': 2,
-                'price': 90
-            },
-            {
-                'count': 3,
-                'price': 130
-            }
-        ]
-    }
 
-    free = {
-    }
+    def offers_sorted_by_required(self) -> list[dict]:
+        return sorted(self.offers, key=lambda x: x['required'], reverse=True)
+
 
     def apply_discount(self, skus, sku) -> int:
         total = 0
@@ -176,5 +147,6 @@ class CheckoutSolution:
 
 # client = CheckoutSolution()
 # print(client.checkout("EEBFFFFFF"))
+
 
 
