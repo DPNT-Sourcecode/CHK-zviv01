@@ -148,22 +148,23 @@ class CheckoutSolution:
         
         
         while len(self.basket) > 0:
-            if self.basket[0] in PRICES.keys():
+            item = self.basket[0]
+            if item in PRICES.keys():
                 for offer in sorted_offers:
-                    if offer['item'] == self.basket[0]:
+                    if offer['item'] == item:
                         self.apply_offer(offer)
-                        if len(self.basket) == 0:
-                            break
-                sku_count = self.basket.count(self.basket[0])
-                self.total += sku_count * PRICES[self.basket[0]]
-                self.basket = self.basket.replace(self.basket[0], '', sku_count)
+                        # if len(self.basket) == 0:
+                        #     break
+                sku_count = self.basket.count(item)
+                self.total += sku_count * PRICES[item]
+                self.basket = self.basket.replace(item, '', sku_count)
             else:
                 return -1                
         return self.total
 
-client = CheckoutSolution()
-tests = ["AAAAA", "EEEEBB", "BEBEEE", "FFFF"]
-for test in tests:
-    print(f"Test: {test}")
-    print("RESULT = ", client.checkout(test))
+# client = CheckoutSolution()
+# tests = ["AAAAA", "EEEEBB", "BEBEEE", "FFFF", "AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
+# for test in tests:
+#     print(f"Test: {test}")
+#     print("RESULT = ", client.checkout(test))
 
