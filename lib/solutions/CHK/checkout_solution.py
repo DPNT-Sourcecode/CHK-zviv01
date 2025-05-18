@@ -113,42 +113,60 @@ class CheckoutSolution:
     class Item:
         count: int
 
-    def offers_sorted_by_required(self, input_offers: list[dict]) -> list[dict]:
-        return sorted(input_offers, key=lambda x: x['required'], reverse=True)
-    
     def remove_unrelated_offers(self, skus) -> list[dict]:
         return [offer for offer in self.offers if offer['item'] in skus]
 
-
-    def apply_discount(self, skus, sku) -> int:
-        total = 0
-        rem_skus = skus.count(sku)
-        for discount in self.discount[sku]:
-            div = rem_skus // discount['count']
-            if div > 0:
-                total += div * discount['price']
-                rem_skus = rem_skus % discount['count']
-        return total + rem_skus * self.prices[sku]
+    def offers_sorted_by_required(self, input_offers: list[dict]) -> list[dict]:
+        return sorted(input_offers, key=lambda x: x['required'], reverse=True)
     
-    def apply_discount(self, item, offer):
-        pass
+    # def apply_discount(self, skus, sku) -> int:
+    #     total = 0
+    #     rem_skus = skus.count(sku)
+    #     for discount in self.discount[sku]:
+    #         div = rem_skus // discount['count']
+    #         if div > 0:
+    #             total += div * discount['price']
+    #             rem_skus = rem_skus % discount['count']
+    #     return total + rem_skus * self.prices[sku]
+    
+    def apply_offer(self, rem_skus: str, offer: dict) -> None:
+        sku_count = rem_skus.count(offer['item'])
+        div = sku_count // offer['required']
+        if div > 0:
+            if 'free_item' in offer.keys():
+                rem_skus = rem_skus.replace(offer['free_item'], '', div)
+                self.total += div * self.prices[offer['item']]
+            if 'discounted_price' in offer.keys():
+                self.total += div * offer['discounted_price']
+            rem_skus = rem_skus.replace(offer['item'], '', div * offer['required'])
                 
 
-    def total_sku(self, skus, sku) -> int:
-        count = skus.count(sku)
-        if sku in self.discount.keys():
-            return self.apply_discount(skus, sku)
-        return count * self.prices[sku]
+    # def total_sku(self, skus, sku) -> int:
+    #     count = skus.count(sku)
+    #     if sku in self.discount.keys():
+    #         return self.apply_discount(skus, sku)
+    #     return count * self.prices[sku]
+
+        # e_count = skus.count('E')
+        # if e_count > 1:
+        #     div = e_count // 2
+        #     skus = skus.replace('B', '', div)
 
     # skus = unicode string
-    def checkout(self, skus) -> int:
-        e_count = skus.count('E')
-        if e_count > 1:
-            div = e_count // 2
-            skus = skus.replace('B', '', div)
-
-        rem_skus = skus
+    def checkout(self, skus: str) -> int:
+        
+        if len(skus) == 0:
+            return 0
+        
         total = 0
+        rem_skus = skus
+
+        offers = self.remove_unrelated_offers(skus)
+        sorted_offers = self.offers_sorted_by_required(offers)
+
+        for offer in sorted_offers:
+            self.apply_offer(rem_skus, offer)
+        
         while len(rem_skus) > 0:
             if rem_skus[0] in self.prices.keys():
                 total += self.total_sku(rem_skus, rem_skus[0])
@@ -160,8 +178,8 @@ class CheckoutSolution:
 # client = CheckoutSolution()
 # offers = client.remove_unrelated_offers('ABCDH')
 # print(client.offers_sorted_by_required(offers))
-s = "ADZRADF"
+# s = "ADZRADF"
 
-# Sorting the string
-sorted_string = ''.join(sorted(s))
-print(sorted_string)
+# # Sorting the string
+# sorted_string = ''.join(sorted(s))
+# print(sorted_string)
