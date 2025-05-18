@@ -20,9 +20,10 @@ class CheckoutSolution:
 
     def total_sku(self, skus, sku) -> int:
         count = skus.count(sku)
+        rem = count % self.offers[sku]['count']
         print(f"count: {count}")
-        if sku in self.offers.keys() and count % self.offers[sku]['count'] > 0:
-            rem = count % self.offers[sku]['count']
+        print(self.offers.keys())
+        if sku in self.offers.keys() and rem > 0:
             rem_total = rem * self.prices[sku]
             print(f"rem_total: {rem_total}")
             offer_total = count // self.offers[sku]['count'] * self.offers[sku]['price']
@@ -41,6 +42,7 @@ class CheckoutSolution:
             else:
                 return -1                
         return total
+
 
 
 
