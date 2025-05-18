@@ -57,5 +57,6 @@ class CheckoutSolution:
         return total
 
 client = CheckoutSolution()
-print(client.checkout("AAABBAA"))
+print(client.checkout("ABBAACD"))
+
 
