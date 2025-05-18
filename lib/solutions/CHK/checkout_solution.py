@@ -126,7 +126,7 @@ class CheckoutSolution:
         if div > 0:
             if 'free_item' in offer.keys():
                 self.basket = self.basket.replace(offer['free_item'], '', div)
-                self.total += div * PRICES[offer['item']]
+                self.total += div * offer['required'] * PRICES[offer['item']]
             if 'discounted_price' in offer.keys():
                 self.total += div * offer['discounted_price']
             self.basket = self.basket.replace(offer['item'], '', div * offer['required'])
@@ -182,5 +182,6 @@ print(client.checkout('QQRRR'))
         # if e_count > 1:
         #     div = e_count // 2
         #     skus = skus.replace('B', '', div)
+
 
 
