@@ -29,6 +29,8 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus):
+        if skus == "":
+            return 0
         total = 0
         rem_skus = skus
         while len(rem_skus) > 0:
@@ -38,6 +40,7 @@ class CheckoutSolution:
             else:
                 return -1                
         return total
+
 
 
 
