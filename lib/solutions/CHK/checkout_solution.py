@@ -29,7 +29,28 @@ class CheckoutSolution:
         'Z': 50
     }
 
-    discount = {
+    offers = [
+        {
+            'item': 'A',
+            'required': 3,
+            'discounted_price': 130
+        },
+        {
+            'item': 'A',
+            'required': 5,
+            'discounted_price': 200
+        },
+        {
+            'item': 'B',
+            'required': 2,
+            'discounted_price': 45
+        },
+        {
+            'item': 'B',
+
+        }
+        }
+    ]
         'A': [
             {
                 'count': 5,
@@ -155,4 +176,5 @@ class CheckoutSolution:
 
 # client = CheckoutSolution()
 # print(client.checkout("EEBFFFFFF"))
+
 
