@@ -121,6 +121,7 @@ class CheckoutSolution:
         sku_count = self.basket.count(offer['item'])
         div = sku_count // offer['required']
         if div > 0:
+            print("applying offer", offer)
             if 'free_item' in offer.keys():
                 self.basket = self.basket.replace(offer['free_item'], '', div)
                 self.total += div * offer['required'] * PRICES[offer['item']]
@@ -141,7 +142,7 @@ class CheckoutSolution:
         for offer in sorted_offers:
             self.apply_offer(offer)
         
-        print(self.total)
+        print("total from offers", self.total)
         while len(self.basket) > 0:
             if self.basket[0] in PRICES.keys():
                 sku_count = self.basket.count(self.basket[0])
@@ -155,11 +156,12 @@ client = CheckoutSolution()
 tests = ["A", "B", "C", "D", "E"]
 for test in tests:
     print(f"Test: {test}")
-    print(client.checkout(test))
+    print("actual", client.checkout(test))
 # s = "ADZRADF"
 
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
+
 
 
