@@ -46,6 +46,11 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus) -> int:
+        e_count = skus.count('E')
+        if e_count > 1:
+            div = e_count // 2
+            skus = skus.replace('B', '', div)
+
         rem_skus = skus
         total = 0
         while len(rem_skus) > 0:
@@ -58,5 +63,6 @@ class CheckoutSolution:
 
 client = CheckoutSolution()
 print(client.checkout("ABBAACD"))
+
 
 
