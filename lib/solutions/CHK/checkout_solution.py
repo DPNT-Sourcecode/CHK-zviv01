@@ -126,16 +126,12 @@ class CheckoutSolution:
             print("applying offer", offer)
             if 'free_item' in offer.keys():
                 print("free item")
-                if offer['free_item'] == offer['item']:
-                    for i in range(div):
-                        self.basket = self.basket.replace(offer['free_item'], '')
-                else:
-                    self.basket = self.basket.replace(offer['free_item'], '', div)
-                    self.total += div * offer['required'] * PRICES[offer['item']]
+                self.basket = self.basket.replace(offer['free_item'], '', 1)
+                self.total += offer['required'] * PRICES[offer['item']]
             if 'discounted_price' in offer.keys():
                 print("discounted price")
-                self.total += div * offer['discounted_price']
-            self.basket = self.basket.replace(offer['item'], '', div * offer['required'])
+                self.total += offer['discounted_price']
+            self.basket = self.basket.replace(offer['item'], '', offer['required'])
             print("remaining", self.basket)
             print("total", self.total)
 
@@ -167,7 +163,7 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-tests = ["FFFF", "FFFFFF", "FFFFFF"]
+tests = ["FFFF", "FFFFF", "FFFFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
