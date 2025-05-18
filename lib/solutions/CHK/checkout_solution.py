@@ -61,8 +61,9 @@ class CheckoutSolution:
                 return -1                
         return total
 
-client = CheckoutSolution()
-print(client.checkout("ABBAACD"))
+# client = CheckoutSolution()
+# print(client.checkout("EEB"))
+
 
 
 
