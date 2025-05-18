@@ -140,9 +140,11 @@ class CheckoutSolution:
 
         offers = self.remove_unrelated_offers(skus)
         sorted_offers = self.offers_sorted_by_required(offers)
+        print(sorted_offers)
         for offer in sorted_offers:
             self.apply_offer(offer)
         
+        print(self.total)
         while len(self.basket) > 0:
             if self.basket[0] in PRICES.keys():
                 sku_count = self.basket.count(self.basket[0])
@@ -180,4 +182,5 @@ print(client.checkout('QQRRR'))
         # if e_count > 1:
         #     div = e_count // 2
         #     skus = skus.replace('B', '', div)
+
 
