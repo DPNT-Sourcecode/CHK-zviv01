@@ -31,12 +31,13 @@ class CheckoutSolution:
     def checkout(self, skus):
         total = 0
         rem_skus = skus
-        if skus.strip('ABCD').len() > 0:
-            return -1
         while len(rem_skus) > 0:
             if rem_skus[0] in self.prices.keys():
                 total += self.total_sku(skus, rem_skus)
-                rem_skus.strip(rem_skus[0])                
+                rem_skus.strip(rem_skus[0])
+            else:
+                return -1                
         return total
+
 
 
