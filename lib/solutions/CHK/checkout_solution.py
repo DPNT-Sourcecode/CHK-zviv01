@@ -112,10 +112,8 @@ class CheckoutSolution:
     total = 0
 
     def remove_unrelated_offers(self, skus) -> list[dict]:
-        return [offer for offer in OFFERS if offer['item'] in skus]
-
-    def offers_sorted_by_required(self, input_offers: list[dict]) -> list[dict]:
-        return sorted(input_offers, key=lambda x: x['required'], reverse=True)
+        remaining_offers = [offer for offer in OFFERS if offer['item'] in skus]
+        return sorted(remaining_offers, key=lambda x: x['required'], reverse=True)   
     
     def apply_offer(self, offer: dict) -> None:
         sku_count = self.basket.count(offer['item'])
@@ -141,8 +139,7 @@ class CheckoutSolution:
         self.total = 0
         self.basket = skus
 
-        offers = self.remove_unrelated_offers(skus)
-        sorted_offers = self.offers_sorted_by_required(offers)
+        sorted_offers = self.remove_unrelated_offers(skus)
         print(sorted_offers)
         for offer in sorted_offers:
             self.apply_offer(offer)
@@ -166,3 +163,4 @@ for test in tests:
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
+
