@@ -7,6 +7,26 @@ class CheckoutSolution:
         'D': 15,
         'E': 40,
         'F': 10,
+        'G': 20,
+        'H': 10,
+        'I': 35,
+        'J': 60,
+        'K': 80,
+        'L': 90,
+        'M': 15,
+        'N': 40,
+        'O': 10,
+        'P': 50,
+        'Q': 30,
+        'R': 50,
+        'S': 30,
+        'T': 20,
+        'U': 40,
+        'V': 50,
+        'W': 20,
+        'X': 90,
+        'Y': 10,
+        'Z': 50
     }
 
     offers = {
@@ -30,6 +50,44 @@ class CheckoutSolution:
             {
                 'count': 3,
                 'price': 20
+            }
+        ],
+        'H': [
+            {
+                'count': 5,
+                'price': 45
+            },
+            {
+                'count': 10,
+                'price': 80
+            }
+        ],
+        'K': [
+            {
+                'count': 2,
+                'price': 150
+            }
+        ],
+        'P': [
+            {
+                'count': 5,
+                'price': 200
+            }
+        ],
+        'Q': [
+            {
+                'count': 3,
+                'price': 80
+            }
+        ],
+        'V': [
+            {
+                'count': 2,
+                'price': 90
+            },
+            {
+                'count': 3,
+                'price': 130
             }
         ]
     }
@@ -70,4 +128,5 @@ class CheckoutSolution:
 
 # client = CheckoutSolution()
 # print(client.checkout("EEBFFFFFF"))
+
 
