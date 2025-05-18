@@ -118,10 +118,6 @@ class CheckoutSolution:
         self.basket = ''.join([item for items, c in Counter(c).most_common() for item in [items] * c])
         print("sorted basket", self.basket)
 
-    def remove_unrelated_offers(self, skus) -> list[dict]:
-        remaining_offers = [offer for offer in OFFERS if offer['item'] in skus]
-        return sorted(remaining_offers, key=lambda x: x['required'], reverse=True)
-
     def can_apply_offer(self, offer: dict) -> bool:
         sku_count = self.basket.count(offer['item'])
         if sku_count >= offer['required']:
@@ -129,7 +125,8 @@ class CheckoutSolution:
         return False
     
     def find_offers(self, item: str) -> list[dict]:
-        return [offer for offer in OFFERS if offer['item'] == item]
+        item_offers = [offer for offer in OFFERS if offer['item'] == item]
+        return sorted(item_offers, key=lambda x: x['required'], reverse=True)
     
     def apply_offer(self, offer: dict) -> None:
         print("applying offer", offer)
@@ -153,19 +150,18 @@ class CheckoutSolution:
         self.total = 0
         self.basket = skus
         self.sort_basket()
-        sorted_offers = self.remove_unrelated_offers(skus)
         
         while len(self.basket) > 0:
             item = self.basket[0]
             if item in PRICES.keys():
-                offer_applied = False
-                for offer in sorted_offers:
-                    if offer['item'] == item and self.can_apply_offer(offer):
-                        self.apply_offer(offer)
-                        self.sort_basket()
-                        offer_applied = True
-                        break
-                if not offer_applied:
+                item_offers = self.find_offers(item)
+                if item_offers:
+                    for offer in item_offers:
+                        if offer['item'] == item and self.can_apply_offer(offer):
+                            self.apply_offer(offer)
+                            self.sort_basket()
+                            break
+                else:
                     sku_count = self.basket.count(item)
                     self.total += sku_count * PRICES[item]
                     self.basket = self.basket.replace(item, '', sku_count)
@@ -179,4 +175,5 @@ tests = ["AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "AAAAAPPPPPUUUUEEBRRRQA
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
