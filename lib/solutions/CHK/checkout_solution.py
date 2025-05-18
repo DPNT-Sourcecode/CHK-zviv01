@@ -164,7 +164,7 @@ class CheckoutSolution:
                     sku_count = self.basket.count(item)
                     self.total += sku_count * PRICES[item]
                     self.basket = self.basket.replace(item, '', sku_count)
-                    self.sort_basket()
+                    # self.sort_basket()
             else:
                 return -1                
         return self.total
