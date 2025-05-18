@@ -152,8 +152,8 @@ class CheckoutSolution:
                 for offer in sorted_offers:
                     if offer['item'] == self.basket[0]:
                         self.apply_offer(offer)
-                    if len(self.basket) == 0:
-                        break
+                        if len(self.basket) == 0:
+                            break
                 sku_count = self.basket.count(self.basket[0])
                 self.total += sku_count * PRICES[self.basket[0]]
                 self.basket = self.basket.replace(self.basket[0], '', sku_count)
@@ -166,3 +166,4 @@ tests = ["AAAAA", "EEEEBB", "BEBEEE", "FFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
