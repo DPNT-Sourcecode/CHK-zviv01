@@ -6,6 +6,7 @@ class CheckoutSolution:
         'C': 20,
         'D': 15,
         'E': 40,
+        'F': 10,
     }
 
     offers = {
@@ -63,7 +64,3 @@ class CheckoutSolution:
 
 # client = CheckoutSolution()
 # print(client.checkout("EEB"))
-
-
-
-
