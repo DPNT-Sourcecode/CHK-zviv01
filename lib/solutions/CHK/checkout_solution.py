@@ -143,14 +143,13 @@ class CheckoutSolution:
         self.basket = skus
 
         sorted_offers = self.remove_unrelated_offers(skus)
-        print(sorted_offers)
-        for offer in sorted_offers:
-
-            self.apply_offer(offer)
         
-        print("total from offers", self.total)
+        
         while len(self.basket) > 0:
             if self.basket[0] in PRICES.keys():
+                for offer in sorted_offers:
+                    if offer['item'] == self.basket[0]:
+                        self.apply_offer(offer)
                 sku_count = self.basket.count(self.basket[0])
                 self.total += sku_count * PRICES[self.basket[0]]
                 self.basket = self.basket.replace(self.basket[0], '', sku_count)
@@ -163,4 +162,5 @@ tests = ["EEEEBB", "BEBEEE", "FFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
