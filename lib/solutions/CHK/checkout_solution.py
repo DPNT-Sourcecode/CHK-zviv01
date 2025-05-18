@@ -109,7 +109,7 @@ OFFERS = [
 class CheckoutSolution:
 
     basket = ''
-    total: int = 0
+    total = 0
 
     def remove_unrelated_offers(self, skus) -> list[dict]:
         return [offer for offer in OFFERS if offer['item'] in skus]
@@ -123,9 +123,11 @@ class CheckoutSolution:
         if div > 0:
             print("applying offer", offer)
             if 'free_item' in offer.keys():
+                print("free item")
                 self.basket = self.basket.replace(offer['free_item'], '', div)
                 self.total += div * offer['required'] * PRICES[offer['item']]
             if 'discounted_price' in offer.keys():
+                print("discounted price")
                 self.total += div * offer['discounted_price']
             self.basket = self.basket.replace(offer['item'], '', div * offer['required'])
 
@@ -134,6 +136,7 @@ class CheckoutSolution:
         
         if len(skus) == 0:
             return 0
+        self.total = 0
         self.basket = skus
 
         offers = self.remove_unrelated_offers(skus)
@@ -162,6 +165,7 @@ for test in tests:
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
+
 
 
 
