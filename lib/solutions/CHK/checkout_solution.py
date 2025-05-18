@@ -156,7 +156,7 @@ class CheckoutSolution:
             if item in PRICES.keys():
                 offer_applied = False
                 for offer in sorted_offers:
-                    if offer['item'] == item:
+                    if offer['item'] == item and self.can_apply_offer(offer):
                         self.apply_offer(offer)
                         offer_applied = True
                         continue
