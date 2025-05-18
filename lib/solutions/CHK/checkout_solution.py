@@ -141,6 +141,7 @@ class CheckoutSolution:
             return 0
         self.total = 0
         self.basket = skus
+        self.sort_basket()
 
         sorted_offers = self.remove_unrelated_offers(skus)
         
@@ -164,6 +165,7 @@ tests = ["EEEEBB", "BEBEEE", "FFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
 
 
