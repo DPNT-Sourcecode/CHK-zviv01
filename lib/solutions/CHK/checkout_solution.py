@@ -171,5 +171,3 @@ tests = ["FFFF", "FFFFFF", "FFFFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
-
-
