@@ -130,6 +130,7 @@ class CheckoutSolution:
                 print("discounted price")
                 self.total += div * offer['discounted_price']
             self.basket = self.basket.replace(offer['item'], '', div * offer['required'])
+            print("remaining", self.basket)
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
@@ -156,7 +157,8 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-tests = ["A", "B", "C", "D", "E"]
+# tests = ["A", "B", "C", "D", "E"]
+tests = ["AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
 for test in tests:
     print(f"Test: {test}")
     print("actual", client.checkout(test))
@@ -165,6 +167,7 @@ for test in tests:
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
+
 
 
 
