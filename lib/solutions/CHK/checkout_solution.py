@@ -169,8 +169,12 @@ class CheckoutSolution:
                 return -1                
         return self.total
 
-# client = CheckoutSolution()
-# tests = ["FFFF", "FFFFF", "FFFFFF", "AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
-# for test in tests:
-#     print(f"Test: {test}")
-#     print("RESULT = ", client.checkout(test))
+client = CheckoutSolution()
+tests = [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
+    "PPPPQRUVPQRUVPQRUVSU"
+]
+for test in tests:
+    print(f"Test: {test}")
+    print("RESULT = ", client.checkout(test))
