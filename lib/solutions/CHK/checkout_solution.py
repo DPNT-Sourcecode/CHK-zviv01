@@ -46,6 +46,12 @@ class CheckoutSolution:
                 'price': 45
             }
         ],
+        'E': [
+            {
+                'count': 2,
+                'sku': 'B'
+            }
+        ],
         'F': [
             {
                 'count': 3,
@@ -68,6 +74,12 @@ class CheckoutSolution:
                 'price': 150
             }
         ],
+        'N': [
+            {
+                'count': 3,
+                'sku': 'M'
+            }
+        ],
         'P': [
             {
                 'count': 5,
@@ -78,6 +90,18 @@ class CheckoutSolution:
             {
                 'count': 3,
                 'price': 80
+            }
+        ],
+        'R': [
+            {
+                'count': 3,
+                'sku': 'Q'
+            }
+        ],
+        'U': [
+            {
+                'count': 4,
+                'price': 120
             }
         ],
         'V': [
@@ -93,7 +117,6 @@ class CheckoutSolution:
     }
 
     free = {
-
     }
 
     def apply_discount(self, skus, sku) -> int:
@@ -132,3 +155,4 @@ class CheckoutSolution:
 
 # client = CheckoutSolution()
 # print(client.checkout("EEBFFFFFF"))
+
