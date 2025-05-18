@@ -33,9 +33,10 @@ class CheckoutSolution:
         total = 0
         while len(rem_skus) > 0:
             if rem_skus[0] in self.prices.keys():
-                total += self.total_sku(skus, rem_skus[0])
+                total += self.total_sku(rem_skus, rem_skus[0])
                 rem_skus = rem_skus.replace(rem_skus[0], '')
             else:
                 return -1                
         return total
+
 
