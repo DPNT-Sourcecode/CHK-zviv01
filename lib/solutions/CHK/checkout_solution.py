@@ -34,5 +34,3 @@ class CheckoutSolution:
             if item in skus:
                 total += self.total_sku(skus, item)
         return total
-
-
