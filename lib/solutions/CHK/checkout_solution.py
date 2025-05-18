@@ -111,11 +111,7 @@ class CheckoutSolution:
         return sorted(input_offers, key=lambda x: x['required'], reverse=True)
     
     def remove_unrelated_offers(self, skus) -> list[dict]:
-        offers = []
-        for offer in self.offers:
-            if offer['item'] in skus:
-                offers.append(offer)
-        return offers
+        return [offer for offer in self.offers if offer['item'] in skus]
 
 
     def apply_discount(self, skus, sku) -> int:
@@ -153,5 +149,6 @@ class CheckoutSolution:
         return total
 
 client = CheckoutSolution()
-print(client.offers_sorted_by_required())
+print(client.remove_unrelated_offers('ABCDEF'))
+
 
