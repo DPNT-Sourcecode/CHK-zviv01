@@ -145,14 +145,15 @@ class CheckoutSolution:
         
         while len(self.basket) > 0:
             if self.basket[0] in PRICES.keys():
-                total += self.total_sku(rem_skus, rem_skus[0])
-                rem_skus = rem_skus.replace(rem_skus[0], '')
+                sku_count = self.basket.count(self.basket[0])
+                self.total += sku_count * PRICES[self.basket[0]]
+                self.basket = self.basket.replace(self.basket[0], '', sku_count)
             else:
                 return -1                
-        return total
+        return self.total
 
-# client = CheckoutSolution()
-# offers = client.remove_unrelated_offers('ABCDH')
+client = CheckoutSolution()
+offers = client.remove_unrelated_offers('A')
 # print(client.offers_sorted_by_required(offers))
 # s = "ADZRADF"
 
