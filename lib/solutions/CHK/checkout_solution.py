@@ -154,30 +154,10 @@ class CheckoutSolution:
                 return -1                
         return self.total
 
-client = CheckoutSolution()
-print(client.checkout('B'))
+# client = CheckoutSolution()
+# print(client.checkout('B'))
 # s = "ADZRADF"
 
 # # Sorting the string
 # sorted_string = ''.join(sorted(s))
 # print(sorted_string)
-
-# def apply_discount(self, skus, sku) -> int:
-    #     total = 0
-    #     rem_skus = skus.count(sku)
-    #     for discount in self.discount[sku]:
-    #         div = rem_skus // discount['count']
-    #         if div > 0:
-    #             total += div * discount['price']
-    #             rem_skus = rem_skus % discount['count']
-    #     return total + rem_skus * self.prices[sku]
-    # def total_sku(self, skus, sku) -> int:
-    #     count = skus.count(sku)
-    #     if sku in self.discount.keys():
-    #         return self.apply_discount(skus, sku)
-    #     return count * self.prices[sku]
-
-        # e_count = skus.count('E')
-        # if e_count > 1:
-        #     div = e_count // 2
-        #     skus = skus.replace('B', '', div)
