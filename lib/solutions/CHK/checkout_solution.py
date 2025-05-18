@@ -11,12 +11,12 @@ class CheckoutSolution:
     offers = {
         'A': [
             {
-                'count': 3,
-                'price': 130
-            },
-            {
                 'count': 5,
                 'price': 200
+            },
+            {
+                'count': 3,
+                'price': 130
             },
         ],
         'B': [
@@ -27,15 +27,21 @@ class CheckoutSolution:
         ],
     }
 
+    def apply_offers(self, skus, sku) -> int:
+        total = 0
+        rem_skus = skus.count(sku)
+        for offer in self.offers[sku]:
+            div = rem_skus // offer['count']
+            if div > 0:
+                total += div * offer['price']
+                rem_skus = rem_skus % offer['count']
+        return total + rem_skus * self.prices[sku]
+                
+
     def total_sku(self, skus, sku) -> int:
         count = skus.count(sku)
         if sku in self.offers.keys():
-            rem = count % self.offers[sku]['count']
-            offer_total = count // self.offers[sku]['count'] * self.offers[sku]['price']
-            if rem > 0:
-                rem_total = rem * self.prices[sku]
-                return rem_total + offer_total
-            return offer_total
+            return self.apply_offers(skus, sku)
         return count * self.prices[sku]
 
     # skus = unicode string
@@ -49,3 +55,7 @@ class CheckoutSolution:
             else:
                 return -1                
         return total
+
+client = CheckoutSolution()
+print(client.checkout("AAABBAA"))
+
