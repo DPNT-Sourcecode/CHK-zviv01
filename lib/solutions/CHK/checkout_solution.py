@@ -128,6 +128,9 @@ class CheckoutSolution:
             return True
         return False
     
+    def find_offers(self, item: str) -> list[dict]:
+        return [offer for offer in OFFERS if offer['item'] == item]
+    
     def apply_offer(self, offer: dict) -> None:
         print("applying offer", offer)
         sku_count = self.basket.count(offer['item'])
@@ -176,3 +179,4 @@ tests = ["AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "AAAAAPPPPPUUUUEEBRRRQA
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
