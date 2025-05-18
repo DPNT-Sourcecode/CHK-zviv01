@@ -112,7 +112,8 @@ class CheckoutSolution:
     total = 0
 
     def sort_basket(self) -> None:
-        self.basket = ''.join(sorted(self.basket))
+        self.basket = sorted(self.basket, key=self.basket.count, reverse=True)
+        print("sorted basket", self.basket)
 
     def remove_unrelated_offers(self, skus) -> list[dict]:
         remaining_offers = [offer for offer in OFFERS if offer['item'] in skus]
@@ -165,7 +166,3 @@ tests = ["EEEEBB", "BEBEEE", "FFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
-
-
-
-
