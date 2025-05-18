@@ -117,7 +117,13 @@ class CheckoutSolution:
 
     def remove_unrelated_offers(self, skus) -> list[dict]:
         remaining_offers = [offer for offer in OFFERS if offer['item'] in skus]
-        return sorted(remaining_offers, key=lambda x: x['required'], reverse=True)   
+        return sorted(remaining_offers, key=lambda x: x['required'], reverse=True)
+
+    def can_apply_offer(self, offer: dict) -> bool:
+        sku_count = self.basket.count(offer['item'])
+        if sku_count >= offer['required']:
+            return True
+        return False
     
     def apply_offer(self, offer: dict) -> None:
         print("applying offer", offer)
@@ -143,19 +149,18 @@ class CheckoutSolution:
         self.total = 0
         self.basket = skus
         self.sort_basket()
-
         sorted_offers = self.remove_unrelated_offers(skus)
-        
         
         while len(self.basket) > 0:
             item = self.basket[0]
             if item in PRICES.keys():
-                if item in [offer['item'] for offer in sorted_offers]:
-                    for offer in sorted_offers:
-                        if offer['item'] == item:
-                            self.apply_offer(offer)
-                            break
-                else:
+                offer_applied = False
+                for offer in sorted_offers:
+                    if offer['item'] == item:
+                        self.apply_offer(offer)
+                        offer_applied = True
+                        continue
+                if not offer_applied:
                     sku_count = self.basket.count(item)
                     self.total += sku_count * PRICES[item]
                     self.basket = self.basket.replace(item, '', sku_count)
@@ -168,4 +173,3 @@ tests = ["FFFF", "FFFFF", "FFFFFF"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
-
