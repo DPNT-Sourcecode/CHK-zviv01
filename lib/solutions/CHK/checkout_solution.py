@@ -132,6 +132,3 @@ class CheckoutSolution:
 
 # client = CheckoutSolution()
 # print(client.checkout("EEBFFFFFF"))
-
-
-
