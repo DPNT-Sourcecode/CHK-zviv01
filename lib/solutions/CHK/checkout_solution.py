@@ -159,12 +159,14 @@ class CheckoutSolution:
                 for offer in sorted_offers:
                     if offer['item'] == item and self.can_apply_offer(offer):
                         self.apply_offer(offer)
+                        self.sort_basket()
                         offer_applied = True
                         break
                 if not offer_applied:
                     sku_count = self.basket.count(item)
                     self.total += sku_count * PRICES[item]
                     self.basket = self.basket.replace(item, '', sku_count)
+                    self.sort_basket()
             else:
                 return -1                
         return self.total
