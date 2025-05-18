@@ -18,7 +18,7 @@ class CheckoutSolution:
             {
                 'count': 3,
                 'price': 130
-            },
+            }
         ],
         'B': [
             {
@@ -26,6 +26,12 @@ class CheckoutSolution:
                 'price': 45
             }
         ],
+        'F': [
+            {
+                'count': 3,
+                'price': 20
+            }
+        ]
     }
 
     def apply_offers(self, skus, sku) -> int:
@@ -63,4 +69,5 @@ class CheckoutSolution:
         return total
 
 # client = CheckoutSolution()
-# print(client.checkout("EEB"))
+# print(client.checkout("EEBFFFFFF"))
+
