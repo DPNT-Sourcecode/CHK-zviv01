@@ -160,5 +160,8 @@ class CheckoutSolution:
 # client = CheckoutSolution()
 # offers = client.remove_unrelated_offers('ABCDH')
 # print(client.offers_sorted_by_required(offers))
-word = 'AAABBC'
-print([set(word)])
+s = "ADZRADF"
+
+# Sorting the string
+sorted_string = ''.join(sorted(s))
+print(sorted_string)
