@@ -155,7 +155,7 @@ class CheckoutSolution:
             item = self.basket[0]
             if item in PRICES.keys():
                 item_offers = self.find_offers(item)
-                if item_offers:
+                if len(item_offers) > 0:
                     for offer in item_offers:
                         if offer['item'] == item and self.can_apply_offer(offer):
                             self.apply_offer(offer)
@@ -171,7 +171,7 @@ class CheckoutSolution:
         return self.total
 
 client = CheckoutSolution()
-tests = ["AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
+tests = ["FFFF", "FFFFF", "FFFFFF", "AAAAAAAAAA", "HHHHHHHHHHHHHHHHHHHH", "VVVVVV", "AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"]
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
