@@ -182,11 +182,15 @@ class CheckoutSolution:
         else:
             value_ordered_items = sorted(offer['items'], key=lambda x: PRICES[x], reverse=True)
             required = offer['required']
+            print('before remove')
+            print(self.basket)
             while required > 0:
                 for item in value_ordered_items:
                     if item in self.basket:
                         self.basket = self.basket.replace(item, '', 1)
                         required -= 1
+            print('after remove')
+            print(self.basket)
 
 
     def find_all_applicable_offers(self) -> list[dict]:
@@ -218,7 +222,7 @@ class CheckoutSolution:
 
         self.total = 0
         self.basket = skus
-        print(self.basket)
+        
 
         applicable_offers = self.find_all_applicable_offers()
         while len(applicable_offers) > 0:
@@ -229,7 +233,8 @@ class CheckoutSolution:
                 applicable_offers = self.find_all_applicable_offers()
             else:
                 applicable_offers.remove(offer)
-        print(self.basket)
+        
+        print('i am here')
         
         while len(self.basket) > 0:
             item = self.basket[0]
@@ -251,6 +256,7 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
 
 
