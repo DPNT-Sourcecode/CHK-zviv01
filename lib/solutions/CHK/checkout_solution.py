@@ -187,8 +187,10 @@ class CheckoutSolution:
             while required > 0:
                 for item in value_ordered_items:
                     if item in self.basket:
+                        print('removing')
                         self.basket = self.basket.replace(item, '', 1)
                         required -= 1
+                        break
             print('after remove')
             print(self.basket)
 
@@ -256,6 +258,7 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
 
 
