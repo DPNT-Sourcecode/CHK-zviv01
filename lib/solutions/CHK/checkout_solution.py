@@ -117,14 +117,12 @@ class CheckoutSolution:
         offer_items = [offer['item'] for offer in OFFERS]
 
         offer_basket = ''.join([item for item in self.basket if item in offer_items])
-        offerbasket_c = Counter(offer_basket)
-        offer_basket = ''.join([item for items, c in Counter(offerbasket_c).most_common() for item in [items] * c])
+        sorted_offer_basket = ''.join([item for items, c in Counter(offer_basket).most_common() for item in [items] * c])
         
         non_offer_basket = ''.join([item for item in self.basket if item not in offer_items])
-        nonofferbasket_c = Counter(non_offer_basket)
-        self.basket = ''.join([item for items, c in Counter(nonofferbasket_c).most_common() for item in [items] * c])
+        sorted_non_offer_basket = ''.join([item for items, c in Counter(non_offer_basket).most_common() for item in [items] * c])
         
-        self.basket = offer_basket + non_offer_basket
+        self.basket = sorted_offer_basket + sorted_non_offer_basket
         print("sorted basket", self.basket)
 
     def can_apply_offer(self, offer: dict) -> bool:
@@ -187,4 +185,5 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
