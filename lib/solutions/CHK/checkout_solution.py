@@ -1,5 +1,3 @@
-from collections import Counter
-
 PRICES = {
     'A': 50,
     'B': 30,
@@ -117,18 +115,6 @@ class CheckoutSolution:
 
     basket = ''
     total = 0
-
-    # def sort_basket(self) -> None:
-    #     applicable_offer_items = [offer['item'] for offer in self.find_all_applicable_offers()]
-
-    #     offer_basket = ''.join([item for item in self.basket if item in applicable_offer_items])
-    #     sorted_offer_basket = ''.join([item for items, c in Counter(offer_basket).most_common() for item in [items] * c])
-        
-    #     non_offer_basket = ''.join([item for item in self.basket if item not in applicable_offer_items])
-    #     sorted_non_offer_basket = ''.join([item for items, c in Counter(non_offer_basket).most_common() for item in [items] * c])
-        
-    #     self.basket = sorted_offer_basket + sorted_non_offer_basket
-    #     print("sorted basket", self.basket)
     
     def count_offer_items(self, offer: dict) -> int:
         return sum([self.basket.count(i) for i in offer['items']])
@@ -150,7 +136,6 @@ class CheckoutSolution:
         return total - offer['discounted_price']
 
     def can_apply_offer(self, offer: dict) -> bool:
-        # sku_count = self.basket.count(offer['item'])
         sku_count = self.count_offer_items(offer)
         if sku_count >= offer['required']:
             if 'free_item' in offer.keys():
@@ -187,11 +172,9 @@ class CheckoutSolution:
     
     def apply_offer(self, offer: dict) -> None:
         print("applying offer", offer)
-        # sku_count = self.basket.count(offer['item'])
         sku_count = self.count_offer_items(offer)
         div = sku_count // offer['required']
         if div > 0:
-            # remove_required_items
             self.remove_items_for_offer(offer)
             if 'free_item' in offer.keys():
                 self.total += offer['required'] * PRICES[offer['items'][0]]
@@ -210,14 +193,12 @@ class CheckoutSolution:
 
         self.total = 0
         self.basket = skus
-        
 
         applicable_offers = self.find_all_applicable_offers()
         while len(applicable_offers) > 0:
             offer = applicable_offers[0]
             if ''.join(offer['items']) in self.basket:
                 self.apply_offer(offer)
-                # self.sort_basket()
                 applicable_offers = self.find_all_applicable_offers()
             else:
                 applicable_offers.remove(offer)
@@ -229,7 +210,6 @@ class CheckoutSolution:
             sku_count = self.basket.count(item)
             self.total += sku_count * PRICES[item]
             self.basket = self.basket.replace(item, '', sku_count)
-            # self.sort_basket()
            
         return self.total
 
@@ -247,5 +227,6 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
 
