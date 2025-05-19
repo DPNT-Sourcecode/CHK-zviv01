@@ -148,11 +148,19 @@ class CheckoutSolution:
     def count_offer_items(self, offer: dict) -> int:
         return sum([self.basket.count(i) for i in offer['items']])
     
-    def calculate_offer_value(self, offer: dict) -> int:
-        offer_value = 0
-        for item in offer['items']:
-            offer_value += self.basket.count(item) * PRICES[item]
-        return offer_value
+    def calculate_offer_value(self, applicable_offer: dict) -> int:
+        basket = self.basket
+        total = 0
+        value_ordered_items = sorted(applicable_offer['items'], key=lambda x: PRICES[x], reverse=True)
+        required = applicable_offer['required']
+        while required > 0:
+            for item in value_ordered_items:
+                if item in basket:
+                    basket = basket.replace(item, '', 1)
+                    total += PRICES[item]
+                    required -= 1
+                    break
+        return total - applicable_offer['discounted_price']
 
     def can_apply_offer(self, offer: dict) -> bool:
         # sku_count = self.basket.count(offer['item'])
@@ -173,7 +181,7 @@ class CheckoutSolution:
 
     def find_all_applicable_offers(self) -> list[dict]:
         applicable_offers = [offer for offer in OFFERS if self.can_apply_offer(offer)]
-        return sorted(applicable_offers, key=lambda x: x['offer_value'], reverse=True)
+        return sorted(applicable_offers, key=lambda x: self.calculate_offer_value(x), reverse=True)
     
     def apply_offer(self, offer: dict) -> None:
         print("applying offer", offer)
