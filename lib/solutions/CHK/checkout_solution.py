@@ -151,10 +151,7 @@ class CheckoutSolution:
             self.basket = self.basket.replace(offer['items'][0], '', offer['required'])
         else:
             value_ordered_items = sorted(offer['items'], key=lambda x: PRICES[x], reverse=True)
-            print("value ordered = ", value_ordered_items)
             required = offer['required']
-            print('before remove')
-            print(self.basket)
             while required > 0:
                 for item in value_ordered_items:
                     if item in self.basket:
@@ -162,13 +159,10 @@ class CheckoutSolution:
                         self.basket = self.basket.replace(item, '', 1)
                         required -= 1
                         break
-            print('after remove')
-            print(self.basket)
 
 
     def find_all_applicable_offers(self) -> list[dict]:
         applicable_offers = [offer for offer in OFFERS if self.can_apply_offer(offer)]
-        print(applicable_offers)
         return sorted(applicable_offers, key=lambda x: self.calculate_offer_value(x), reverse=True)
     
     def apply_offer(self, offer: dict) -> None:
@@ -182,7 +176,6 @@ class CheckoutSolution:
                 self.basket = self.basket.replace(offer['free_item'], '', 1)
             elif 'discounted_price' in offer.keys():
                 self.total += offer['discounted_price']
-            print("total", self.total)
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
@@ -198,9 +191,7 @@ class CheckoutSolution:
         applicable_offers = self.find_all_applicable_offers()
         while len(applicable_offers) > 0:
             offer = applicable_offers[0]
-            print(''.join(offer['items']))
-            if ''.join(offer['items']) in self.basket:
-                print('applying offer')
+            if self.count_offer_items(offer) >= offer['required']:
                 self.apply_offer(offer)
                 applicable_offers = self.find_all_applicable_offers()
             else:
