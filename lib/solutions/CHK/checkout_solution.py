@@ -149,6 +149,9 @@ class CheckoutSolution:
         return sum([self.basket.count(i) for i in offer['items']])
     
     def calculate_offer_value(self, applicable_offer: dict) -> int:
+        print(applicable_offer)
+        if applicable_offer['free_item']:
+            return PRICES[applicable_offer['free_item']] 
         basket = self.basket
         total = 0
         value_ordered_items = sorted(applicable_offer['items'], key=lambda x: PRICES[x], reverse=True)
@@ -240,3 +243,4 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
