@@ -171,9 +171,11 @@ class CheckoutSolution:
     
     def apply_offer(self, offer: dict) -> None:
         print("applying offer", offer)
-        sku_count = self.basket.count(offer['item'])
+        # sku_count = self.basket.count(offer['item'])
+        sku_count = self.count_offer_items(offer)
         div = sku_count // offer['required']
         if div > 0:
+            # remove_required_items
             self.basket = self.basket.replace(offer['item'], '', offer['required'])
             if 'free_item' in offer.keys():
                 self.total += offer['required'] * PRICES[offer['item']]
@@ -224,4 +226,5 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
