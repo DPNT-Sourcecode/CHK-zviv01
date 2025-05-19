@@ -198,7 +198,9 @@ class CheckoutSolution:
         applicable_offers = self.find_all_applicable_offers()
         while len(applicable_offers) > 0:
             offer = applicable_offers[0]
+            print(''.join(offer['items']))
             if ''.join(offer['items']) in self.basket:
+                print('applying offer')
                 self.apply_offer(offer)
                 applicable_offers = self.find_all_applicable_offers()
             else:
@@ -232,6 +234,7 @@ tests = [
 for test in tests:
     print(f">>>>>>>>>>>>>>>>Test: {test}")
     print("RESULT = ", client.checkout(test), "<<<<<<<<<<<<<<<<<<")
+
 
 
 
