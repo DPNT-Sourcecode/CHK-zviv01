@@ -185,8 +185,9 @@ class CheckoutSolution:
             required = offer['required']
             while required > 0:
                 for item in value_ordered_items:
-                    if item in basket:
-                        basket = basket.replace(item, '', 1)
+                    if item in self.basket:
+                        self.basket = self.basket.replace(item, '', 1)
+                        required -= 1
 
 
     def find_all_applicable_offers(self) -> list[dict]:
@@ -200,7 +201,7 @@ class CheckoutSolution:
         div = sku_count // offer['required']
         if div > 0:
             # remove_required_items
-            self.basket = self.basket.replace(offer['item'], '', offer['required'])
+            self.remove_items_for_offer(offer)
             if 'free_item' in offer.keys():
                 self.total += offer['required'] * PRICES[offer['item']]
                 self.basket = self.basket.replace(offer['free_item'], '', 1)
@@ -250,3 +251,4 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
