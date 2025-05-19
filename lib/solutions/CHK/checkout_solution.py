@@ -31,100 +31,100 @@ PRICES = {
 
 OFFERS = [
     {
-        'item': 'A',
+        'items': ['A'],
         'required': 3,
         'discounted_price': 130,
         'offer_value': 20
     },
     {
-        'item': 'A',
+        'items': ['A'],
         'required': 5,
         'discounted_price': 200,
         'offer_value': 50
     },
     {
-        'item': 'B',
+        'items': ['B'],
         'required': 2,
         'discounted_price': 45,
         'offer_value': 15
     },
     {
-        'item': 'E',
+        'items': ['E'],
         'required': 2,
         'free_item': 'B',
         'offer_value': 30
     },
     {
-        'item': 'F',
+        'items': ['F'],
         'required': 2,
         'free_item': 'F',
         'offer_value': 10
     },
     {
-        'item': 'H',
+        'items': ['H'],
         'required': 5,
         'discounted_price': 45,
         'offer_value': 5
     },
     {
-        'item': 'H',
+        'items': ['H'],
         'required': 10,
         'discounted_price': 80,
         'offer_value': 20
     },
     {
-        'item': 'K',
+        'items': ['K'],
         'required': 2,
         'discounted_price': 150,
         'offer_value': 10
     },
     {
-        'item': 'N',
+        'items': ['N'],
         'required': 3,
         'free_item': 'M',
         'offer_value': 15
     },
     {
-        'item': 'P',
+        'items': ['P'],
         'required': 5,
         'discounted_price': 200,
         'offer_value': 50
     },
     {
-        'item': 'Q',
+        'items': ['Q'],
         'required': 3,
         'discounted_price': 80,
         'offer_value': 10
     },
     {
-        'item': 'R',
+        'items': ['R'],
         'required': 3,
         'free_item': 'Q',
         'offer_value': 30
     },
     {
-        'item': 'U',
+        'items': ['U'],
         'required': 3,
         'free_item': 'U',
         'offer_value': 40
     },
     {
-        'item': 'V',
+        'items': ['V'],
         'required': 2,
         'discounted_price': 90,
         'offer_value': 10
     },
     {
-        'item': 'V',
+        'items': ['V'],
         'required': 3,
         'discounted_price': 130,
         'offer_value': 20
     },
-    # {
-    #     'items': ['S', 'T', 'X', 'Y', 'Z'],
-    #     'required': 3,
-    #     'discounted_price': 45,
-    # }
+    {
+        'items': ['S', 'T', 'X', 'Y', 'Z'],
+        'required': 3,
+        'discounted_price': 45,
+    }
 ]
 
 
@@ -144,6 +144,9 @@ class CheckoutSolution:
         
         self.basket = sorted_offer_basket + sorted_non_offer_basket
         print("sorted basket", self.basket)
+    
+    def count_offer_items(self, offer: dict) -> int:
+        return sum([self.basket.count(offer['items'][i]) for i in len(offer['items'])])
 
     def can_apply_offer(self, offer: dict) -> bool:
         sku_count = self.basket.count(offer['item'])
