@@ -156,7 +156,7 @@ class CheckoutSolution:
                 item_offers = self.find_applicable_offers(item)
                 if len(item_offers) > 0:
                     for offer in item_offers:
-                        if offer['item'] == item and self.can_apply_offer(offer):
+                        if offer['item'] == item:
                             self.apply_offer(offer)
                             self.sort_basket()
                             break
