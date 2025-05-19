@@ -181,7 +181,7 @@ class CheckoutSolution:
             self.basket = self.basket.replace(offer['items'][0], '', offer['required'])
         else:
             value_ordered_items = sorted(offer['items'], key=lambda x: PRICES[x], reverse=True)
-            print(value_ordered_items)
+            print("value ordered = ", value_ordered_items)
             required = offer['required']
             print('before remove')
             print(self.basket)
@@ -262,3 +262,4 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
