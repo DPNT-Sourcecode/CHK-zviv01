@@ -114,7 +114,7 @@ class CheckoutSolution:
     total = 0
 
     def sort_basket(self) -> None:
-        offer_items = [offer['item'] for offer in OFFERS]
+        applicable_offer_items = [offer['item'] for offer in OFFERS if self.can_apply_offer(offer)]
 
         offer_basket = ''.join([item for item in self.basket if item in offer_items])
         sorted_offer_basket = ''.join([item for items, c in Counter(offer_basket).most_common() for item in [items] * c])
@@ -185,5 +185,3 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
-
-
