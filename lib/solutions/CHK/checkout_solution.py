@@ -147,10 +147,9 @@ class CheckoutSolution:
                 free_item_count = self.basket.count(offer['free_item'])
                 if free_item_count > 0:
                     return True
-                else:
-                    return False
-            else:
-                return True
+                return False
+            
+            return True
         return False
     
     def find_applicable_offers(self, item: str) -> list[dict]:
@@ -207,3 +206,4 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
