@@ -181,13 +181,14 @@ class CheckoutSolution:
             self.basket = self.basket.replace(offer['items'][0], '', offer['required'])
         else:
             value_ordered_items = sorted(offer['items'], key=lambda x: PRICES[x], reverse=True)
+            print(value_ordered_items)
             required = offer['required']
             print('before remove')
             print(self.basket)
             while required > 0:
                 for item in value_ordered_items:
                     if item in self.basket:
-                        print('removing')
+                        print('removing', item)
                         self.basket = self.basket.replace(item, '', 1)
                         required -= 1
                         break
