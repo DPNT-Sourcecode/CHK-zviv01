@@ -11,7 +11,7 @@ PRICES = {
     'H': 10,
     'I': 35,
     'J': 60,
-    'K': 80,
+    'K': 70,
     'L': 90,
     'M': 15,
     'N': 40,
@@ -19,14 +19,14 @@ PRICES = {
     'P': 50,
     'Q': 30,
     'R': 50,
-    'S': 30,
+    'S': 20,
     'T': 20,
     'U': 40,
     'V': 50,
     'W': 20,
-    'X': 90,
-    'Y': 10,
-    'Z': 50
+    'X': 17,
+    'Y': 20,
+    'Z': 21
 }
 
 OFFERS = [
@@ -34,91 +34,76 @@ OFFERS = [
         'items': ['A'],
         'required': 3,
         'discounted_price': 130,
-        'offer_value': 20
     },
     {
         'items': ['A'],
         'required': 5,
         'discounted_price': 200,
-        'offer_value': 50
     },
     {
         'items': ['B'],
         'required': 2,
         'discounted_price': 45,
-        'offer_value': 15
     },
     {
         'items': ['E'],
         'required': 2,
         'free_item': 'B',
-        'offer_value': 30
     },
     {
         'items': ['F'],
         'required': 2,
         'free_item': 'F',
-        'offer_value': 10
     },
     {
         'items': ['H'],
         'required': 5,
         'discounted_price': 45,
-        'offer_value': 5
     },
     {
         'items': ['H'],
         'required': 10,
         'discounted_price': 80,
-        'offer_value': 20
     },
     {
         'items': ['K'],
         'required': 2,
         'discounted_price': 150,
-        'offer_value': 10
     },
     {
         'items': ['N'],
         'required': 3,
         'free_item': 'M',
-        'offer_value': 15
     },
     {
         'items': ['P'],
         'required': 5,
         'discounted_price': 200,
-        'offer_value': 50
     },
     {
         'items': ['Q'],
         'required': 3,
         'discounted_price': 80,
-        'offer_value': 10
     },
     {
         'items': ['R'],
         'required': 3,
         'free_item': 'Q',
-        'offer_value': 30
     },
     {
         'items': ['U'],
         'required': 3,
         'free_item': 'U',
-        'offer_value': 40
     },
     {
         'items': ['V'],
         'required': 2,
         'discounted_price': 90,
-        'offer_value': 10
     },
     {
         'items': ['V'],
         'required': 3,
         'discounted_price': 130,
-        'offer_value': 20
     },
     {
         'items': ['S', 'T', 'X', 'Y', 'Z'],
@@ -262,4 +247,5 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
