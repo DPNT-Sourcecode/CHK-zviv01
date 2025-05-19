@@ -116,10 +116,10 @@ class CheckoutSolution:
     def sort_basket(self) -> None:
         applicable_offer_items = [offer['item'] for offer in OFFERS if self.can_apply_offer(offer)]
 
-        offer_basket = ''.join([item for item in self.basket if item in offer_items])
+        offer_basket = ''.join([item for item in self.basket if item in applicable_offer_items])
         sorted_offer_basket = ''.join([item for items, c in Counter(offer_basket).most_common() for item in [items] * c])
         
-        non_offer_basket = ''.join([item for item in self.basket if item not in offer_items])
+        non_offer_basket = ''.join([item for item in self.basket if item not in applicable_offer_items])
         sorted_non_offer_basket = ''.join([item for items, c in Counter(non_offer_basket).most_common() for item in [items] * c])
         
         self.basket = sorted_offer_basket + sorted_non_offer_basket
