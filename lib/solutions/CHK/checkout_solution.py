@@ -168,6 +168,7 @@ class CheckoutSolution:
 
     def find_all_applicable_offers(self) -> list[dict]:
         applicable_offers = [offer for offer in OFFERS if self.can_apply_offer(offer)]
+        print(applicable_offers)
         return sorted(applicable_offers, key=lambda x: self.calculate_offer_value(x), reverse=True)
     
     def apply_offer(self, offer: dict) -> None:
@@ -203,8 +204,6 @@ class CheckoutSolution:
             else:
                 applicable_offers.remove(offer)
         
-        print('i am here')
-        
         while len(self.basket) > 0:
             item = self.basket[0]
             sku_count = self.basket.count(item)
@@ -215,21 +214,25 @@ class CheckoutSolution:
 
 client = CheckoutSolution()
 tests = [
-    "",
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
-    "PPPPQRUVPQRUVPQRUVSU",
-    "STXYZ",
+    # "",
+    # "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    # "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
+    # "PPPPQRUVPQRUVPQRUVSU",
+    # "STXYZ",
+    "STX",
+    "STXSTX",
+    "SSS",
     # "FFFF",
     # "FFFFFF",
     # "FFFFFF",
-    "KK",
-    "KKK",
-    "KKKK"
+    # "KK",
+    # "KKK",
+    # "KKKK"
 ]
 for test in tests:
     print(f">>>>>>>>>>>>>>>>Test: {test}")
     print("RESULT = ", client.checkout(test), "<<<<<<<<<<<<<<<<<<")
+
 
 
 
