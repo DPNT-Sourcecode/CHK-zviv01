@@ -148,14 +148,14 @@ class CheckoutSolution:
     def count_offer_items(self, offer: dict) -> int:
         return sum([self.basket.count(i) for i in offer['items']])
     
-    def calculate_offer_value(self, applicable_offer: dict) -> int:
-        print(applicable_offer)
-        if 'free_item' in applicable_offer.keys():
-            return PRICES[applicable_offer['free_item']] 
+    def calculate_offer_value(self, offer: dict) -> int:
+        print(offer)
+        if 'free_item' in offer.keys():
+            return PRICES[offer['free_item']] 
         basket = self.basket
         total = 0
-        value_ordered_items = sorted(applicable_offer['items'], key=lambda x: PRICES[x], reverse=True)
-        required = applicable_offer['required']
+        value_ordered_items = sorted(offer['items'], key=lambda x: PRICES[x], reverse=True)
+        required = offer['required']
         while required > 0:
             for item in value_ordered_items:
                 if item in basket:
@@ -163,7 +163,7 @@ class CheckoutSolution:
                     total += PRICES[item]
                     required -= 1
                     break
-        return total - applicable_offer['discounted_price']
+        return total - offer['discounted_price']
 
     def can_apply_offer(self, offer: dict) -> bool:
         # sku_count = self.basket.count(offer['item'])
@@ -174,9 +174,20 @@ class CheckoutSolution:
                 if free_item_count > 0:
                     return True
                 return False
-            
             return True
         return False
+    
+    def remove_items_for_offer(self, offer: dict) -> None:
+        if len(offer["items"]) == 1:
+            self.basket = self.basket.replace(offer['items'][0], '', offer['required'])
+        else:
+            value_ordered_items = sorted(offer['items'], key=lambda x: PRICES[x], reverse=True)
+            required = offer['required']
+            while required > 0:
+                for item in value_ordered_items:
+                    if item in basket:
+                        basket = basket.replace(item, '', 1)
+
 
     def find_all_applicable_offers(self) -> list[dict]:
         applicable_offers = [offer for offer in OFFERS if self.can_apply_offer(offer)]
