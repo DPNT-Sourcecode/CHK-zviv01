@@ -205,23 +205,23 @@ class CheckoutSolution:
            
         return self.total
 
-client = CheckoutSolution()
-tests = [
-    # "",
-    # "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    # "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
-    # "PPPPQRUVPQRUVPQRUVSU",
-    # "STXYZ",
-    "STX",
-    "STXSTX",
-    "SSS",
-    # "FFFF",
-    # "FFFFFF",
-    # "FFFFFF",
-    # "KK",
-    # "KKK",
-    # "KKKK"
-]
-for test in tests:
-    print(f">>>>>>>>>>>>>>>>Test: {test}")
-    print("RESULT = ", client.checkout(test), "<<<<<<<<<<<<<<<<<<")
+# client = CheckoutSolution()
+# tests = [
+#     "",
+#     "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
+#     "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
+#     "PPPPQRUVPQRUVPQRUVSU",
+#     "STXYZ",
+#     "STX",
+#     "STXSTX",
+#     "SSS",
+#     "FFFF",
+#     "FFFFFF",
+#     "FFFFFF",
+#     "KK",
+#     "KKK",
+#     "KKKK"
+# ]
+# for test in tests:
+#     print(f">>>>>>>>>>>>>>>>Test: {test}")
+#     print("RESULT = ", client.checkout(test), "<<<<<<<<<<<<<<<<<<")
