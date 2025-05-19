@@ -203,7 +203,7 @@ class CheckoutSolution:
             # remove_required_items
             self.remove_items_for_offer(offer)
             if 'free_item' in offer.keys():
-                self.total += offer['required'] * PRICES[offer['item']]
+                self.total += offer['required'] * PRICES[offer['items'][0]]
                 self.basket = self.basket.replace(offer['free_item'], '', 1)
             elif 'discounted_price' in offer.keys():
                 self.total += offer['discounted_price']
@@ -251,4 +251,5 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
