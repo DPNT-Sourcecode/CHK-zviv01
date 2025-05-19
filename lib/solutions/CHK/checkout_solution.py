@@ -134,7 +134,7 @@ class CheckoutSolution:
     total = 0
 
     def sort_basket(self) -> None:
-        applicable_offer_items = [offer['item'] for offer in OFFERS if self.can_apply_offer(offer)]
+        applicable_offer_items = [offer['item'] for offer in self.find_all_applicable_offers()]
 
         offer_basket = ''.join([item for item in self.basket if item in applicable_offer_items])
         sorted_offer_basket = ''.join([item for items, c in Counter(offer_basket).most_common() for item in [items] * c])
@@ -147,6 +147,12 @@ class CheckoutSolution:
     
     def count_offer_items(self, offer: dict) -> int:
         return sum([self.basket.count(i) for i in offer['items']])
+    
+    def calculate_offer_value(self, offer: dict) -> int:
+        offer_value = 0
+        for item in offer['items']:
+            offer_value += self.basket.count(item) * PRICES[item]
+        return offer_value
 
     def can_apply_offer(self, offer: dict) -> bool:
         # sku_count = self.basket.count(offer['item'])
