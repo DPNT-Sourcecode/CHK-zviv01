@@ -33,77 +33,92 @@ OFFERS = [
     {
         'item': 'A',
         'required': 3,
-        'discounted_price': 130
+        'discounted_price': 130,
+        'offer_value': 20
     },
     {
         'item': 'A',
         'required': 5,
-        'discounted_price': 200
+        'discounted_price': 200,
+        'offer_value': 50
     },
     {
         'item': 'B',
         'required': 2,
-        'discounted_price': 45
+        'discounted_price': 45,
+        'offer_value': 15
     },
     {
         'item': 'E',
         'required': 2,
-        'free_item': 'B'
+        'free_item': 'B',
+        'offer_value': 30
     },
     {
         'item': 'F',
         'required': 2,
-        'free_item': 'F'
+        'free_item': 'F',
+        'offer_value': 10
     },
     {
         'item': 'H',
         'required': 5,
-        'discounted_price': 45
+        'discounted_price': 45,
+        'offer_value': 5
     },
     {
         'item': 'H',
         'required': 10,
-        'discounted_price': 80
+        'discounted_price': 80,
+        'offer_value': 20
     },
     {
         'item': 'K',
         'required': 2,
-        'discounted_price': 150
+        'discounted_price': 150,
+        'offer_value': 10
     },
     {
         'item': 'N',
         'required': 3,
-        'free_item': 'M'
+        'free_item': 'M',
+        'offer_value': 15
     },
     {
         'item': 'P',
         'required': 5,
-        'discounted_price': 200
+        'discounted_price': 200,
+        'offer_value': 50
     },
     {
         'item': 'Q',
         'required': 3,
-        'discounted_price': 80
+        'discounted_price': 80,
+        'offer_value': 10
     },
     {
         'item': 'R',
         'required': 3,
-        'free_item': 'Q'
+        'free_item': 'Q',
+        'offer_value': 30
     },
     {
         'item': 'U',
         'required': 3,
-        'free_item': 'U'
+        'free_item': 'U',
+        'offer_value': 40
     },
     {
         'item': 'V',
         'required': 2,
-        'discounted_price': 90
+        'discounted_price': 90,
+        'offer_value': 10
     },
     {
         'item': 'V',
         'required': 3,
-        'discounted_price': 130
+        'discounted_price': 130,
+        'offer_value': 20
     },
 ]
 
@@ -128,7 +143,14 @@ class CheckoutSolution:
     def can_apply_offer(self, offer: dict) -> bool:
         sku_count = self.basket.count(offer['item'])
         if sku_count >= offer['required']:
-            return True
+            if 'free_item' in offer.keys():
+                free_item_count = self.basket.count(offer['free_item'])
+                if free_item_count > 0:
+                    return True
+                else:
+                    return False
+            else:
+                return True
         return False
     
     def find_applicable_offers(self, item: str) -> list[dict]:
