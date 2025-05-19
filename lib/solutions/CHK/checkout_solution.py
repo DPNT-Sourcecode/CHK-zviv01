@@ -146,10 +146,11 @@ class CheckoutSolution:
         print("sorted basket", self.basket)
     
     def count_offer_items(self, offer: dict) -> int:
-        return sum([self.basket.count(offer['items'][i]) for i in len(offer['items'])])
+        return sum([self.basket.count(i) for i in offer['items']])
 
     def can_apply_offer(self, offer: dict) -> bool:
-        sku_count = self.basket.count(offer['item'])
+        # sku_count = self.basket.count(offer['item'])
+        sku_count = self.count_offer_items(offer)
         if sku_count >= offer['required']:
             if 'free_item' in offer.keys():
                 free_item_count = self.basket.count(offer['free_item'])
@@ -223,3 +224,4 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
