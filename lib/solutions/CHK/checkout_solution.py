@@ -155,6 +155,10 @@ class CheckoutSolution:
     def find_applicable_offers(self, item: str) -> list[dict]:
         item_offers = [offer for offer in OFFERS if offer['item'] == item and self.can_apply_offer(offer)]
         return sorted(item_offers, key=lambda x: x['required'], reverse=True)
+
+    def find_all_applicable_offers(self) -> list[dict]:
+        applicable_offers = [offer for offer in OFFERS if self.can_apply_offer(offer)]
+        return sorted(applicable_offers, key=lambda x: x['offer_value'], reverse=True)
     
     def apply_offer(self, offer: dict) -> None:
         print("applying offer", offer)
@@ -177,6 +181,17 @@ class CheckoutSolution:
         self.total = 0
         self.basket = skus
         self.sort_basket()
+
+        applicable_offers = self.find_all_applicable_offers()
+        while len(applicable_offers) > 0:
+            offer = applicable_offers[0]
+            if offer['item'] in self.basket:
+                self.apply_offer(offer)
+                self.sort_basket()
+                applicable_offers = self.find_all_applicable_offers()
+            else:
+                applicable_offers.remove(offer)
+
         
         while len(self.basket) > 0:
             item = self.basket[0]
@@ -207,6 +222,7 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
 
 
