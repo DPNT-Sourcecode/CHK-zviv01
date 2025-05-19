@@ -183,16 +183,15 @@ class CheckoutSolution:
             if item in PRICES.keys():
                 item_offers = self.find_applicable_offers(item)
                 if len(item_offers) > 0:
-                    for offer in item_offers:
-                        if offer['item'] == item:
-                            self.apply_offer(offer)
-                            self.sort_basket()
-                            break
+                    offers_sorted_by_value = sorted(item_offers, key=lambda x: x['offer_value'], reverse=True)
+                    for offer in offers_sorted_by_value:
+                        self.apply_offer(offer)
+                        break
                 else:
                     sku_count = self.basket.count(item)
                     self.total += sku_count * PRICES[item]
                     self.basket = self.basket.replace(item, '', sku_count)
-                    # self.sort_basket()
+                self.sort_basket()
             else:
                 return -1                
         return self.total
@@ -206,4 +205,5 @@ tests = [
 for test in tests:
     print(f"Test: {test}")
     print("RESULT = ", client.checkout(test))
+
 
