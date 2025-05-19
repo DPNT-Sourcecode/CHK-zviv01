@@ -66,7 +66,7 @@ OFFERS = [
     {
         'items': ['K'],
         'required': 2,
-        'discounted_price': 150,
+        'discounted_price': 120,
     },
     {
         'items': ['N'],
@@ -220,13 +220,16 @@ tests = [
     "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
     "PPPPQRUVPQRUVPQRUVSU",
     "STXYZ",
-    "FFFF",
-    "FFFFFF",
-    "FFFFFF"
+    # "FFFF",
+    # "FFFFFF",
+    # "FFFFFF",
+    "KK",
+    "KKK",
+    "KKKK"
 ]
 for test in tests:
-    print(f"Test: {test}")
-    print("RESULT = ", client.checkout(test))
+    print(f">>>>>>>>>>>>>>>>Test: {test}")
+    print("RESULT = ", client.checkout(test), "<<<<<<<<<<<<<<<<<<")
 
 
 
