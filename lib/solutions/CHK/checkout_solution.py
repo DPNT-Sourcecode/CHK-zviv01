@@ -120,6 +120,11 @@ OFFERS = [
         'discounted_price': 130,
         'offer_value': 20
     },
+    # {
+    #     'items': ['S', 'T', 'X', 'Y', 'Z'],
+    #     'required': 3,
+    #     'discounted_price': 45,
+    # }
 ]
 
 
@@ -152,9 +157,9 @@ class CheckoutSolution:
             return True
         return False
     
-    def find_applicable_offers(self, item: str) -> list[dict]:
-        item_offers = [offer for offer in OFFERS if offer['item'] == item and self.can_apply_offer(offer)]
-        return sorted(item_offers, key=lambda x: x['required'], reverse=True)
+    # def find_applicable_offers(self, item: str) -> list[dict]:
+    #     item_offers = [offer for offer in OFFERS if offer['item'] == item and self.can_apply_offer(offer)]
+    #     return sorted(item_offers, key=lambda x: x['required'], reverse=True)
 
     def find_all_applicable_offers(self) -> list[dict]:
         applicable_offers = [offer for offer in OFFERS if self.can_apply_offer(offer)]
@@ -204,13 +209,14 @@ class CheckoutSolution:
            
         return self.total
 
-# client = CheckoutSolution()
-# tests = [
-#     "",
-#     "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
-#     "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
-#     "PPPPQRUVPQRUVPQRUVSU"
-# ]
-# for test in tests:
-#     print(f"Test: {test}")
-#     print("RESULT = ", client.checkout(test))
+client = CheckoutSolution()
+tests = [
+    "",
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH", 
+    "PPPPQRUVPQRUVPQRUVSU",
+    "STXYZ",
+]
+for test in tests:
+    print(f"Test: {test}")
+    print("RESULT = ", client.checkout(test))
